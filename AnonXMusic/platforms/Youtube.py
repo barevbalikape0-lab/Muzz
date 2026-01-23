@@ -430,13 +430,12 @@ class YouTubeAPI:
                 # First try to get available formats for debugging
                 try:
                     info_opts = {
-                        'cookiefile': cookie_txt_file(),
                         'quiet': True,
                         'no_warnings': True,
                         'extract_flat': False,
                         'geo_bypass': True,
                         'geo_bypass_country': 'US',
-                        'extractor_args': {'youtube': {'player_client': ['android', 'web', 'ios']}},
+                        'extractor_args': {'youtube': {'player_client': ['web']}},
                     }
                     with yt_dlp.YoutubeDL(info_opts) as ydl:
                         info = ydl.extract_info(f'https://www.youtube.com/watch?v={vid_id}', download=False)
@@ -456,7 +455,6 @@ class YouTubeAPI:
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
-                    'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
                     'retries': 20,
@@ -472,7 +470,7 @@ class YouTubeAPI:
                     'continuedl': True,
                     'force_ipv4': True,
                     'age_limit': 99,
-                    'extractor_args': {'youtube': {'player_client': ['android', 'web', 'ios', 'tv']}},
+                    'extractor_args': {'youtube': {'player_client': ['web']}},
                     'youtube_include_dash_manifest': False,
                 }
                 
