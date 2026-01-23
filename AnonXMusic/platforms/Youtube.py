@@ -379,7 +379,7 @@ class YouTubeAPI:
 
         def create_session():
             session = requests.Session()
-            retries = Retry(total=3, backoff_factor=0.1)
+            retries = Retry(total=10, backoff_factor=0.1)
             session.mount('http://', HTTPAdapter(max_retries=retries))
             session.mount('https://', HTTPAdapter(max_retries=retries))
             return session
@@ -437,6 +437,11 @@ class YouTubeAPI:
                     'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
+                    'retries': 10,
+                    'fragment_retries': 10,
+                    'skip_unavailable_fragments': True,
+                    'geo_bypass': True,
+                    'extract_flat': False,
                 }
                 
                 loop = asyncio.get_running_loop()
@@ -467,6 +472,11 @@ class YouTubeAPI:
                     'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
+                    'retries': 10,
+                    'fragment_retries': 10,
+                    'skip_unavailable_fragments': True,
+                    'geo_bypass': True,
+                    'extract_flat': False,
                 }
                 
                 loop = asyncio.get_running_loop()
@@ -496,6 +506,11 @@ class YouTubeAPI:
                     'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
+                    'retries': 10,
+                    'fragment_retries': 10,
+                    'skip_unavailable_fragments': True,
+                    'geo_bypass': True,
+                    'extract_flat': False,
                 }
                 
                 loop = asyncio.get_running_loop()
@@ -530,6 +545,11 @@ class YouTubeAPI:
                     'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
+                    'retries': 10,
+                    'fragment_retries': 10,
+                    'skip_unavailable_fragments': True,
+                    'geo_bypass': True,
+                    'extract_flat': False,
                 }
                 
                 loop = asyncio.get_running_loop()
