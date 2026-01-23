@@ -427,6 +427,27 @@ class YouTubeAPI:
                 if os.path.exists(filepath):
                     return filepath
                 
+                # First try to get available formats for debugging
+                try:
+                    info_opts = {
+                        'cookiefile': cookie_txt_file(),
+                        'quiet': True,
+                        'no_warnings': True,
+                        'extract_flat': False,
+                        'geo_bypass': True,
+                        'geo_bypass_country': 'US',
+                        'extractor_args': {'youtube': {'player_client': ['android', 'web', 'ios']}},
+                    }
+                    with yt_dlp.YoutubeDL(info_opts) as ydl:
+                        info = ydl.extract_info(f'https://www.youtube.com/watch?v={vid_id}', download=False)
+                        formats = info.get('formats', [])
+                        audio_formats = [f for f in formats if f.get('acodec') != 'none']
+                        logger.info(f"Available audio formats for {vid_id}: {len(audio_formats)} formats")
+                        if audio_formats:
+                            logger.info(f"First audio format: {audio_formats[0]}")
+                except Exception as info_e:
+                    logger.error(f"Failed to get info for {vid_id}: {str(info_e)}")
+                
                 ydl_opts = {
                     'format': 'bestaudio/best',
                     'outtmpl': filepath,
