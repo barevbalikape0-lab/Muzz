@@ -428,7 +428,7 @@ class YouTubeAPI:
                     return filepath
                 
                 ydl_opts = {
-                    'format': 'bestaudio/best',
+                    'format': 'best',
                     'outtmpl': filepath,
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
@@ -563,7 +563,7 @@ class YouTubeAPI:
                     return filepath
                 
                 ydl_opts = {
-                    'format': 'bestaudio/best',
+                    'format': 'best',
                     'outtmpl': filepath,
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
