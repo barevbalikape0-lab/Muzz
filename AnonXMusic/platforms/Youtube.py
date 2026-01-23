@@ -430,13 +430,9 @@ class YouTubeAPI:
                 # First try to get available formats for debugging
                 try:
                     info_opts = {
-                        'cookiefile': cookie_txt_file(),
                         'quiet': True,
                         'no_warnings': True,
                         'extract_flat': False,
-                        'geo_bypass': True,
-                        'geo_bypass_country': 'US',
-                        'extractor_args': {'youtube': {'player_client': ['web']}},
                     }
                     with yt_dlp.YoutubeDL(info_opts) as ydl:
                         info = ydl.extract_info(f'https://www.youtube.com/watch?v={vid_id}', download=False)
@@ -449,31 +445,18 @@ class YouTubeAPI:
                     logger.error(f"Failed to get info for {vid_id}: {str(info_e)}")
                 
                 ydl_opts = {
-                    'format': 'bestaudio[abr<=128]/bestaudio/best',
+                    'format': 'bestaudio/best',
                     'outtmpl': filepath,
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
-                    'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
-                    'retries': 20,
-                    'fragment_retries': 20,
+                    'retries': 10,
+                    'fragment_retries': 10,
                     'skip_unavailable_fragments': True,
-                    'geo_bypass': True,
-                    'geo_bypass_country': 'US',
-                    'extract_flat': False,
-                    'sleep_interval': 1,
-                    'max_sleep_interval': 5,
-                    'concurrent_fragment_downloads': 3,
-                    'http_chunk_size': 1048576,
-                    'continuedl': True,
-                    'force_ipv4': True,
-                    'age_limit': 99,
-                    'extractor_args': {'youtube': {'player_client': ['web']}},
-                    'youtube_include_dash_manifest': False,
                 }
                 
                 loop = asyncio.get_running_loop()
@@ -502,24 +485,11 @@ class YouTubeAPI:
                 ydl_opts = {
                     'format': 'best[height<=720]/best',
                     'outtmpl': filepath,
-                    'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
-                    'retries': 20,
-                    'fragment_retries': 20,
+                    'retries': 10,
+                    'fragment_retries': 10,
                     'skip_unavailable_fragments': True,
-                    'geo_bypass': True,
-                    'geo_bypass_country': 'US',
-                    'extract_flat': False,
-                    'sleep_interval': 1,
-                    'max_sleep_interval': 5,
-                    'concurrent_fragment_downloads': 3,
-                    'http_chunk_size': 1048576,
-                    'continuedl': True,
-                    'force_ipv4': True,
-                    'age_limit': 99,
-                    'extractor_args': {'youtube': {'player_client': ['web']}},
-                    'youtube_include_dash_manifest': False,
                 }
                 
                 loop = asyncio.get_running_loop()
@@ -547,24 +517,11 @@ class YouTubeAPI:
                 ydl_opts = {
                     'format': 'best[height<=720]/best',
                     'outtmpl': filepath,
-                    'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
-                    'retries': 20,
-                    'fragment_retries': 20,
+                    'retries': 10,
+                    'fragment_retries': 10,
                     'skip_unavailable_fragments': True,
-                    'geo_bypass': True,
-                    'geo_bypass_country': 'US',
-                    'extract_flat': False,
-                    'sleep_interval': 1,
-                    'max_sleep_interval': 5,
-                    'concurrent_fragment_downloads': 3,
-                    'http_chunk_size': 1048576,
-                    'continuedl': True,
-                    'force_ipv4': True,
-                    'age_limit': 99,
-                    'extractor_args': {'youtube': {'player_client': ['web']}},
-                    'youtube_include_dash_manifest': False,
                 }
                 
                 loop = asyncio.get_running_loop()
@@ -590,31 +547,18 @@ class YouTubeAPI:
                     return filepath
                 
                 ydl_opts = {
-                    'format': 'bestaudio[abr<=128]/bestaudio/best',
+                    'format': 'bestaudio/best',
                     'outtmpl': filepath,
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
-                    'cookiefile': cookie_txt_file(),
                     'quiet': True,
                     'no_warnings': True,
-                    'retries': 20,
-                    'fragment_retries': 20,
+                    'retries': 10,
+                    'fragment_retries': 10,
                     'skip_unavailable_fragments': True,
-                    'geo_bypass': True,
-                    'geo_bypass_country': 'US',
-                    'extract_flat': False,
-                    'sleep_interval': 1,
-                    'max_sleep_interval': 5,
-                    'concurrent_fragment_downloads': 3,
-                    'http_chunk_size': 1048576,
-                    'continuedl': True,
-                    'force_ipv4': True,
-                    'age_limit': 99,
-                    'extractor_args': {'youtube': {'player_client': ['web']}},
-                    'youtube_include_dash_manifest': False,
                 }
                 
                 loop = asyncio.get_running_loop()
