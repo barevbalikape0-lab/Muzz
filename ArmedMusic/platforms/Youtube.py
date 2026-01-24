@@ -27,15 +27,11 @@ logger = LOGGER(__name__)
 
 def cookie_txt_file():
     try:
-        folder_path = f'{os.getcwd()}/cookies'
-        filename = f'{os.getcwd()}/cookies/logs.csv'
-        txt_files = glob.glob(os.path.join(folder_path, '*.txt'))
-        if not txt_files:
-            raise FileNotFoundError('No .txt files found in the specified folder.')
-        cookie_txt_file = random.choice(txt_files)
-        with open(filename, 'a') as file:
-            file.write(f'Choosen File : {cookie_txt_file}\n')
-        return f"cookies/{str(cookie_txt_file).split('/')[-1]}"
+        cookie_file = f'{os.getcwd()}/cookies/youtube_cookies.txt'
+        if os.path.exists(cookie_file):
+            return f"cookies/youtube_cookies.txt"
+        else:
+            return None
     except:
         return None
 
