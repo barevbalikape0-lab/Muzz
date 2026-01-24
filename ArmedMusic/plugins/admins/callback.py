@@ -313,7 +313,10 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                     if str(streamtype) == "audio"
                     else TELEGRAM_VIDEO_URL,
                     caption=_["stream_1"].format(
-                        title, duration, user, "
+                        f"https://t.me/{app.username}?start=info_{videoid}",
+                        title,
+                        duration,
+                        user,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -326,7 +329,10 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                     if str(streamtype) == "audio"
                     else TELEGRAM_VIDEO_URL,
                     caption=_["stream_1"].format(
-                        title, duration, user, "
+                        f"https://t.me/{app.username}?start=info_{videoid}",
+                        title,
+                        duration,
+                        user,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
