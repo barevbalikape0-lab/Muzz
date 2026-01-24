@@ -448,14 +448,14 @@ class YouTubeAPI:
                 
                 ydl_opts = {
                     'format': '140/bestaudio[ext=m4a]/bestaudio',
-                    'outtmpl': filepath,
+                    'outtmpl': os.path.join("downloads", f"{vid_id}"),
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
-                    'quiet': False,
-                    'no_warnings': False,
+                    'quiet': True,
+                    'no_warnings': True,
                     'retries': 10,
                     'fragment_retries': 10,
                     'skip_unavailable_fragments': True,
@@ -570,7 +570,7 @@ class YouTubeAPI:
                 
                 ydl_opts = {
                     'format': 'bestaudio/best',
-                    'outtmpl': filepath,
+                    'outtmpl': f"downloads/{title}",
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': 'mp3',
