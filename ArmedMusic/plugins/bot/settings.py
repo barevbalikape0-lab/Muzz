@@ -263,8 +263,8 @@ async def authusers_mar(client, CallbackQuery, _):
                     j += 1
                 except:
                     continue
-                msg += f'{j}➤ {user}[<code>{user_id}</code>]\n'
-                msg += f'   {_['auth_8']} {admin_name}[<code>{admin_id}</code>]\n\n'
+                msg += f"{j}➤ {user}[<code>{user_id}</code>]\n"
+                msg += f"   {_['auth_8']} {admin_name}[<code>{admin_id}</code>]\n\n"
             upl = InlineKeyboardMarkup([[InlineKeyboardButton(text=_['BACK_BUTTON'], callback_data=f'AU'), InlineKeyboardButton(text=_['CLOSE_BUTTON'], callback_data=f'close')]])
             try:
                 return await CallbackQuery.edit_message_text(msg, reply_markup=upl)
