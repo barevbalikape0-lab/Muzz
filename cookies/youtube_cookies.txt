@@ -1,7 +1,6 @@
 # Netscape HTTP Cookie File
 # https://curl.haxx.se/rfc/cookie_spec.html
 # This is a generated file! Do not edit.
-
 www.youtube.com	FALSE	/	FALSE	1797965539	namejan_2022_update_limit	1
 www.youtube.com	FALSE	/	FALSE	1797965550	namejan_2022_update	1
 www.youtube.com	FALSE	/	FALSE	1798554740	nameny26_limit	1
@@ -41,7 +40,6 @@ www.youtube.com	FALSE	/	FALSE	1774794752	ysm-pro-1	2
 .youtube.com	TRUE	/	TRUE	1803839460	YSC	TJoE36esyJY
 .music.youtube.com	FALSE	/	FALSE	1797965539	namejan_2022_update_limit	1
 .music.youtube.com	FALSE	/	FALSE	1797965550	namejan_2022_update	1
-.music.youtube.com	FALSE	/	FALSE	1798554740	nameny26_limit    1
 .music.youtube.com	FALSE	/	FALSE	1798554743	nameny26	1
 .music.youtube.com	TRUE	/	TRUE	1803839460	PREF	f4=4000000&tz=Asia.Yerevan&f7=100&f5=20000&hl=ru
 .music.youtube.com	TRUE	/	FALSE	1803839457	HSID	Ad9BK1X7tdCCI-vMF
@@ -51,15 +49,9 @@ www.youtube.com	FALSE	/	FALSE	1774794752	ysm-pro-1	2
 .music.youtube.com	TRUE	/	TRUE	1803839457	__Secure-1PAPISID	Ug04LN14VO7iWgcZ/AErdUAWBpIZcdraZD
 .music.youtube.com	TRUE	/	TRUE	1803839457	__Secure-3PAPISID	Ug04LN14VO7iWgcZ/AErdUAWBpIZcdraZD
 .music.youtube.com	TRUE	/	FALSE	1803839457	SID	g.a0006AjKNH2G0UIXROwxq-NjUcIQ0jTBE-aYRTuabelpUVx8Sm0b9ePqZ0INim0-KwcKdXDksQACgYKAeoSARMSFQHGX2MiZ_w-2Qj_S5srMKwpwS90txoVAUF8yKq7xYLs5UXRrhnAUpoGFDkB0076
-.music.youtube.com	TRUE	/	TRUE	1803839457	__Secure-1
-PSID	g.a0006AjKNH2G0UIXROwxq-NjUcIQ0jTBE-aYRTuabelpUVx8Sm0bz8kuuXt0oCFEujuln8NPPwACgYKAQUSARMSFQHGX2MijvJYKq0t1yCLfRrLPvqYhRoVAUF8yKrVLKxoO9nW0cHf0_okHg3t0076
-.music.youtube.com	TRUE	/	TRUE	1803839457	__Secure-3
-PSID	g.a0006AjKNH2G0UIXROwxq-NjUcIQ0jTBE-aYRTuabelpUVx8Sm0bzPspV4dpD6g32xfQd_47OAACgYKAbYSARMSFQHGX2MiVmxc_ccdjQjurht81pRPkxoVAUF8yKrZkJklLGlKkfNuImkrnd_n0076
 .music.youtube.com	TRUE	/	TRUE	0	YSC	TJoE36esyJY
 .music.youtube.com	TRUE	/	TRUE	1784831457	VISITOR_INFO1_LIVE	YUOMzpeHasw
 .music.youtube.com	TRUE	/	TRUE	1784831457	VISITOR_PRIVACY_METADATA	CgJBTRIEGgAgFw%3D%3D
-.music.youtube.com	TRUE	/	TRUE	1784746602	__Secure-YN
-ID	15.YT=g_Cf3tHhL-L0j_bxG9l3Dqj3-S7FzS4xVmKf_fHNb-5ssq4FUHAsvAcbFAIr3NrB02KYXmD4JDDIDsvdoKf1CkmCsYz3unkYFGFwoq7Qw8hjT70n43nF4Byi22nlrEzsHh4Yg9SiPpa24rdCJmvQt1O3NutUvXc5CCWU8HHmm-GHwe5yQwe0aiblPUaXnXXcVmmnPrim6ERAgU-h-8lbYwvUzyniCNl7r2YasRrHLnQDFTYKybVvEfJzbRdvrYtdjfXEUDX8xQX-gQ6L3jRznaulS8YTAtMxyyqijYH8jFDTY3BSh57YOCNYAQdYPEnhRUHCUdFHCZjBp2xRpehh5A
 .music.youtube.com	TRUE	/	TRUE	1784746602	__Secure-ROLLOUT_TOKEN	CICisMKlnMzB4QEQ_aHb3ZGmkQMY46KgvquikgM%3D 
 .music.youtube.com	TRUE	/	TRUE	1797965550	SSIDCC	AKLXzX1DoKPIFk2LBPE0k6stfXcJl9ZEZirAX8eSJnvD5mZrTreduhtSbR4HAjJuf0E6YxmQuQ
 .music.youtube.com	TRUE	/	TRUE	1797965550	__Secure-1PSIDCC	AKLXzX4KQruZOhLNdWTjejHdpPf25MMzJBm9KJKkQStJNZRNE-w2KBuH5-iAH13ax6niJ9wq7E
