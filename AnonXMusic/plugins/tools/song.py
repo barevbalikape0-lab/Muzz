@@ -136,5 +136,5 @@ async def song_download(client, message: Message):
 
     except Exception as e:
         logger.error(f"Song download failed: {e}")
-        await processing_msg.edit_text("❌ Failed to download the song.")</content>
-<parameter name="filePath">c:\Users\User\Muzza\AnonXMusic\plugins\tools\song.py
+        await processing_msg.edit_text("❌ Failed to download the song.")
+        
