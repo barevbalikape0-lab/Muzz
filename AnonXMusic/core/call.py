@@ -412,7 +412,7 @@ class Call(PyTgCalls):
                     chat_id=original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
-                        title[:23],
+                        title,
                         check[0]["dur"],
                         user,
                         f"https://t.me/{app.username}?start=info_{videoid}",
@@ -460,7 +460,7 @@ class Call(PyTgCalls):
                     chat_id=original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
-                        title[:23],
+                        title,
                         check[0]["dur"],
                         user,
                         f"https://t.me/{app.username}?start=info_{videoid}",
@@ -523,7 +523,7 @@ class Call(PyTgCalls):
                         if str(streamtype) == "audio"
                         else config.TELEGRAM_VIDEO_URL,
                         caption=_["stream_1"].format(
-                            title[:23], check[0]["dur"], user, "#"
+                            "#", title, check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -535,7 +535,7 @@ class Call(PyTgCalls):
                         chat_id=original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
                         caption=_["stream_1"].format(
-                            title[:23], check[0]["dur"], user, "#"
+                            "#", title, check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -548,10 +548,10 @@ class Call(PyTgCalls):
                         chat_id=original_chat_id,
                         photo=img,
                         caption=_["stream_1"].format(
-                            title[:23],
+                            f"https://t.me/{app.username}?start=info_{videoid}",
+                            title,
                             check[0]["dur"],
                             user,
-                            f"https://t.me/{app.username}?start=info_{videoid}",
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )

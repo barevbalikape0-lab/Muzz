@@ -122,7 +122,7 @@ async def skip(cli, message: Message, _, chat_id):
             photo=img,
             caption=_["stream_1"].format(
                 f"https://t.me/{app.username}?start=info_{videoid}",
-                title[:23],
+                title,
                 check[0]["dur"],
                 user,
             ),
@@ -155,7 +155,7 @@ async def skip(cli, message: Message, _, chat_id):
             photo=img,
             caption=_["stream_1"].format(
                 f"https://t.me/{app.username}?start=info_{videoid}",
-                title[:23],
+                title,
                 check[0]["dur"],
                 user,
             ),
@@ -198,7 +198,7 @@ async def skip(cli, message: Message, _, chat_id):
                 if str(streamtype) == "audio"
                 else config.TELEGRAM_VIDEO_URL,
                 caption=_["stream_1"].format(
-                    config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                    config.SUPPORT_CHAT, title, check[0]["dur"], user
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -211,7 +211,7 @@ async def skip(cli, message: Message, _, chat_id):
                 if str(streamtype) == "audio"
                 else config.TELEGRAM_VIDEO_URL,
                 caption=_["stream_1"].format(
-                    config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                    config.SUPPORT_CHAT, title, check[0]["dur"], user
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -224,7 +224,7 @@ async def skip(cli, message: Message, _, chat_id):
                 photo=img,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
-                    title[:23],
+                    title,
                     check[0]["dur"],
                     user,
                 ),

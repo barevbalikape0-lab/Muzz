@@ -46,11 +46,11 @@ async def stream(
                     duration_sec,
                     thumbnail,
                     vidid,
-                ) = await YouTube.details(search, False if spotify else True)
-            except:
-                continue
-            if str(duration_min) == "None":
-                continue
+            await app.send_message(
+                chat_id=original_chat_id,
+                text=_["queue_4"].format(position, title, duration_min, user_name),
+                reply_markup=InlineKeyboardMarkup(button),
+            )
             if duration_sec > config.DURATION_LIMIT:
                 continue
             if await is_active_chat(chat_id):
@@ -106,7 +106,7 @@ async def stream(
                         photo=img,
                         caption=_["stream_1"].format(
                             f"https://t.me/{app.username}?start=info_{vidid}",
-                            title[:23],
+                            title,
                             duration_min,
                             user_name,
                         ),
@@ -114,13 +114,13 @@ async def stream(
                     )
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "stream"
-                except Exception as e:
+                except Exception:
                     # If send_photo fails, send a text message instead
                     run = await app.send_message(
                         chat_id,
                         text=_["stream_1"].format(
                             f"https://t.me/{app.username}?start=info_{vidid}",
-                            title[:23],
+                            title,
                             duration_min,
                             user_name,
                         ),
@@ -174,7 +174,7 @@ async def stream(
             button = aq_markup(_, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
-                text=_["queue_4"].format(position, title[:27], duration_min, user_name),
+                text=_["queue_4"].format(position, title, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
         else:
@@ -207,7 +207,7 @@ async def stream(
                     photo=img,
                     caption=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{vidid}",
-                        title[:23],
+                        title,
                         duration_min,
                         user_name,
                     ),
@@ -215,13 +215,13 @@ async def stream(
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
-            except Exception as e:
+            except Exception:
                 # If send_photo fails, send a text message instead
                 run = await app.send_message(
                     chat_id,
                     text=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{vidid}",
-                        title[:23],
+                        title,
                         duration_min,
                         user_name,
                     ),
@@ -249,7 +249,7 @@ async def stream(
             button = aq_markup(_, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
-                text=_["queue_4"].format(position, title[:27], duration_min, user_name),
+                text=_["queue_4"].format(position, title, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
         else:
@@ -272,23 +272,23 @@ async def stream(
             try:
                 run = await app.send_photo(
                     chat_id,
-                    photo=config.SOUNCLOUD_IMG_URL,
+                    photo=config.SOUNDCLOUD_IMG_URL,
                     caption=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{streamtype}",
-                        title[:23],
+                        title,
                         duration_min,
                         user_name,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
-            except Exception as e:
+            except Exception:
                 # If send_photo fails, send a text message instead
                 run = await app.send_message(
                     chat_id,
                     text=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{streamtype}",
-                        title[:23],
+                        title,
                         duration_min,
                         user_name,
                     ),
@@ -318,7 +318,7 @@ async def stream(
             button = aq_markup(_, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
-                text=_["queue_4"].format(position, title[:27], duration_min, user_name),
+                text=_["queue_4"].format(position, title, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
         else:
@@ -344,7 +344,7 @@ async def stream(
                 run = await app.send_photo(
                     chat_id,
                     photo=config.TELEGRAM_VIDEO_URL if video else config.TELEGRAM_AUDIO_URL,
-                    caption=_["stream_1"].format(link, title[:23], duration_min, user_name),
+                    caption=_["stream_1"].format(link, title, duration_min, user_name),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
@@ -352,7 +352,7 @@ async def stream(
                 # If send_photo fails, send a text message instead
                 run = await app.send_message(
                     chat_id,
-                    text=_["stream_1"].format(link, title[:23], duration_min, user_name),
+                    text=_["stream_1"].format(link, title, duration_min, user_name),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
@@ -380,13 +380,13 @@ async def stream(
             button = aq_markup(_, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
-                text=_["queue_4"].format(position, title[:27], duration_min, user_name),
+                text=_["queue_4"].format(position, title, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
         else:
             if not forceplay:
                 db[chat_id] = []
-            n, file_path = await YouTube.video(link)
+                text=_["queue_4"].format(position, title, duration_min, user_name),
             if n == 0:
                 raise AssistantErr(_["str_3"])
             await Anony.join_call(
@@ -416,20 +416,19 @@ async def stream(
                     photo=img,
                     caption=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{vidid}",
-                        title[:23],
+                        title,
                         duration_min,
                         user_name,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
-                db[chat_id][0]["mystic"] = run
-            except Exception as e:
+            except Exception:
                 # If send_photo fails, send a text message instead
                 run = await app.send_message(
                     chat_id,
                     text=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{vidid}",
-                        title[:23],
+                        title,
                         duration_min,
                         user_name,
                     ),
@@ -455,7 +454,7 @@ async def stream(
             position = len(db.get(chat_id)) - 1
             button = aq_markup(_, chat_id)
             await mystic.edit_text(
-                text=_["queue_4"].format(position, title[:27], duration_min, user_name),
+                text=_["queue_4"].format(position, title, duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
         else:
