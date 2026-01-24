@@ -9,7 +9,7 @@ load_dotenv()
 API_ID = int(getenv("API_ID", "27638882"))
 API_HASH = getenv("API_HASH", "f745cdd5ddb46cf841d6990048f52935")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "7598831470:AAGWu2nDC89r3EyZCpNoC1KW9r-9ylNkcT8")
+BOT_TOKEN = getenv("BOT_TOKEN", "8568049660:AAHZl3Wg5b-MTXBjhQbsn9MrP9cCKbWjgDs")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb://mongo:bBlGbsiXVMUFsiXTYOEXuGAnEHfCbNyn@mongodb.railway.internal:27017/armedmusic?authSource=admin")
 
