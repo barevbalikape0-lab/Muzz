@@ -14,6 +14,24 @@ import re
 import config
 
 
+# Mapping for mathematical italic Unicode to regular ASCII
+ITALIC_TO_REGULAR = str.maketrans({
+    0x1D434: 'A', 0x1D435: 'B', 0x1D436: 'C', 0x1D437: 'D', 0x1D438: 'E', 0x1D439: 'F',
+    0x1D43A: 'G', 0x1D43B: 'H', 0x1D43C: 'I', 0x1D43D: 'J', 0x1D43E: 'K', 0x1D43F: 'L',
+    0x1D440: 'M', 0x1D441: 'N', 0x1D442: 'O', 0x1D443: 'P', 0x1D444: 'Q', 0x1D445: 'R',
+    0x1D446: 'S', 0x1D447: 'T', 0x1D448: 'U', 0x1D449: 'V', 0x1D44A: 'W', 0x1D44B: 'X',
+    0x1D44C: 'Y', 0x1D44D: 'Z',
+    0x1D44E: 'a', 0x1D44F: 'b', 0x1D450: 'c', 0x1D451: 'd', 0x1D452: 'e', 0x1D453: 'f',
+    0x1D454: 'g', 0x1D455: 'h', 0x1D456: 'i', 0x1D457: 'j', 0x1D458: 'k', 0x1D459: 'l',
+    0x1D45A: 'm', 0x1D45B: 'n', 0x1D45C: 'o', 0x1D45D: 'p', 0x1D45E: 'q', 0x1D45F: 'r',
+    0x1D460: 's', 0x1D461: 't', 0x1D462: 'u', 0x1D463: 'v', 0x1D464: 'w', 0x1D465: 'x',
+    0x1D466: 'y', 0x1D467: 'z'
+})
+
+def convert_italic_unicode(text):
+    return text.translate(ITALIC_TO_REGULAR)
+
+
 ASSETS_DIR = Path("AnonXMusic/fonts")
 
 ARM_FONTS = [
@@ -623,6 +641,7 @@ async def get_thumb(videoid: str, queue_pos: int = 1, title_style: str = 'bold')
             return config.DEFAULT_THUMB
         title = info.get("title", "Unknown Song")
         title = unicodedata.normalize('NFC', title)
+        title = convert_italic_unicode(title)
         thumb_url = info.get("thumbnail", "")
         channel_name = info.get('uploader', 'Unknown')
         view_count = info.get('view_count', 0)
