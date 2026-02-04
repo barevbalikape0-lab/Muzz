@@ -17,13 +17,18 @@ async def sudo():
     global SUDOERS
     SUDOERS.add(config.OWNER_ID)
     CON = '6281178648'
-    sudoersdb = mongodb.sudoers
-    sudoers = await sudoersdb.find_one({'sudo': 'sudo'})
-    sudoers = [] if not sudoers else sudoers['sudoers']
-    if config.OWNER_ID not in sudoers:
-        sudoers.append(config.OWNER_ID)
-        await sudoersdb.update_one({'sudo': 'sudo'}, {'$set': {'sudoers': sudoers}}, upsert=True)
-    if sudoers:
-        for user_id in sudoers:
-            SUDOERS.add(user_id)
+    try:
+        sudoersdb = mongodb.sudoers
+        sudoers = await sudoersdb.find_one({'sudo': 'sudo'})
+        sudoers = [] if not sudoers else sudoers['sudoers']
+        if config.OWNER_ID not in sudoers:
+            sudoers.append(config.OWNER_ID)
+            await sudoersdb.update_one({'sudo': 'sudo'}, {'$set': {'sudoers': sudoers}}, upsert=True)
+        if sudoers:
+            for user_id in sudoers:
+                SUDOERS.add(user_id)
+    except Exception as e:
+        LOGGER(__name__).warning(f'Failed to load sudoers from MongoDB: {e}')
+        # Ensure the configured owner is always a sudo in case DB is unavailable
+        SUDOERS.add(config.OWNER_ID)
     LOGGER(__name__).info(f'Sudoers Loaded.')

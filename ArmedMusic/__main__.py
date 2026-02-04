@@ -53,4 +53,8 @@ async def init():
     await app.stop()
     LOGGER('ArmedMusic').info('Stopping Armed Music Bot...')
 if __name__ == '__main__':
-    asyncio.get_event_loop().run_until_complete(init())
+    try:
+        asyncio.get_event_loop().run_until_complete(init())
+    except Exception as e:
+        LOGGER(__name__).error(f'Fatal exception during init: {e}', exc_info=True)
+        raise
