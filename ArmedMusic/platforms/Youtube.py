@@ -596,8 +596,6 @@ class YouTubeAPI:
                     try:
                         logger.info(f'Trying download configuration {i + 1} for {vid_id}')
                         ydl_opts = ydl_opts_list[i].copy()
-                        if cookie_file and i < 4:  # Try first 4 configs with cookies
-                            ydl_opts['cookiefile'] = cookie_file
                         if YOUTUBE_PROXY and 'proxy' not in ydl_opts:
                             ydl_opts['proxy'] = YOUTUBE_PROXY
                         loop = asyncio.get_running_loop()
@@ -903,8 +901,6 @@ class YouTubeAPI:
                 for i, ydl_opts in enumerate(ydl_opts_list):
                     try:
                         logger.info(f'Trying song audio download configuration {i + 1} for {vid_id}')
-                        if cookie_file and 'cookiefile' not in ydl_opts:
-                            ydl_opts['cookiefile'] = cookie_file
                         if YOUTUBE_PROXY and 'proxy' not in ydl_opts:
                             ydl_opts['proxy'] = YOUTUBE_PROXY
                         loop = asyncio.get_running_loop()
@@ -932,8 +928,6 @@ class YouTubeAPI:
                             ydl_fallback = {'format': 'bestaudio/best', 'outtmpl': f'downloads/{title}', 'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192'}], 'quiet': True, 'no_warnings': True}
                             if YOUTUBE_PROXY:
                                 ydl_fallback['proxy'] = YOUTUBE_PROXY
-                            if cookie_file and 'cookiefile' not in ydl_fallback:
-                                ydl_fallback['cookiefile'] = cookie_file
                             loop = asyncio.get_running_loop()
                             with ThreadPoolExecutor() as executor:
                                 await loop.run_in_executor(executor, lambda: yt_dlp.YoutubeDL(ydl_fallback).download([invid_url]))
