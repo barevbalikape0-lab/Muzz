@@ -43,7 +43,7 @@ def _bool_env(var, default=False):
 YOUTUBE_USE_COOKIES = _bool_env("YOUTUBE_USE_COOKIES", False)
 YOUTUBE_USE_PYTUBE = _bool_env("YOUTUBE_USE_PYTUBE", True)
 # Comma separated list of invidious instances: "https://yewtu.cafe,https://yewtu.eu"
-YOUTUBE_INVIDIOUS_INSTANCES = [i.strip() for i in getenv("YOUTUBE_INVIDIOUS_INSTANCES", "https://yewtu.be,https://invidious.snopyta.org,https://invidious.kavin.rocks,https://invidious.tiekoetter.com,https://invidious.flokinet.to").split(",") if i.strip()]
+YOUTUBE_INVIDIOUS_INSTANCES = [i.strip() for i in getenv("YOUTUBE_INVIDIOUS_INSTANCES", "https://yewtu.be,https://invidious.snopyta.org,https://invidious.kavin.rocks,https://invidious.tiekoetter.com,https://invidious.flokinet.to,https://yewtu.cafe,https://nsxvn4w6i7o2rjgp.onion,https://invidio.us,https://inv.riverside.rocks,https://invidious.byt3.org,https://invidious.slipfox.xyz,https://invidious.xyz").split(",") if i.strip()]
 
 YT_API_KEY = getenv("YT_API_KEY" , "AIzaSyAyFW-9snpxGwFa5cu-p81jjE8Fg1h_6rk" )
 YOUTUBE_FALLBACK_SEARCH_LIMIT = int(getenv("YOUTUBE_FALLBACK_SEARCH_LIMIT", "5"))
