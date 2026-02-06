@@ -99,7 +99,8 @@ async def skip(cli, message: Message, _, chat_id):
             return await message.reply_text(_['call_6'])
         button = stream_markup(_, chat_id)
         img = await get_thumb(videoid, user_id)
-        run = await message.reply_photo(photo=img, caption=_['stream_1'].format(f'https://t.me/{app.username}?start=info_{videoid}', title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
+        display_title = remove_emoji(title)
+        run = await message.reply_photo(photo=img, caption=_['stream_1'].format(f'https://t.me/{app.username}?start=info_{videoid}', display_title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
         db[chat_id][0]['mystic'] = run
         db[chat_id][0]['markup'] = 'tg'
         try:
@@ -123,7 +124,8 @@ async def skip(cli, message: Message, _, chat_id):
             return await mystic.edit_text(_['call_6'])
         button = stream_markup(_, chat_id)
         img = await get_thumb(videoid, user_id)
-        run = await message.reply_photo(photo=img, caption=_['stream_1'].format(f'https://t.me/{app.username}?start=info_{videoid}', title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
+        display_title = remove_emoji(title)
+        run = await message.reply_photo(photo=img, caption=_['stream_1'].format(f'https://t.me/{app.username}?start=info_{videoid}', display_title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
         db[chat_id][0]['mystic'] = run
         db[chat_id][0]['markup'] = 'stream'
         try:
@@ -185,12 +187,15 @@ async def skip(cli, message: Message, _, chat_id):
             db[chat_id][0]['markup'] = 'tg'
         elif videoid == 'soundcloud':
             button = stream_markup(_, chat_id)
-            run = await message.reply_photo(photo=config.SOUNCLOUD_IMG_URL if str(streamtype) == 'audio' else config.TELEGRAM_VIDEO_URL, caption=_['stream_1'].format(config.SUPPORT_CHAT, title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
+            display_title = remove_emoji(title)
+            msg_link = check[0].get('link', f'https://t.me/{app.username}?start=info_{videoid}')
+            run = await message.reply_photo(photo=config.SOUNCLOUD_IMG_URL if str(streamtype) == 'audio' else config.TELEGRAM_VIDEO_URL, caption=_['stream_1'].format(msg_link, display_title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
             db[chat_id][0]['mystic'] = run
             db[chat_id][0]['markup'] = 'tg'
         else:
             button = stream_markup(_, chat_id)
             img = await get_thumb(videoid, user_id)
-            run = await message.reply_photo(photo=img, caption=_['stream_1'].format(f'https://t.me/{app.username}?start=info_{videoid}', title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
+            display_title = remove_emoji(title)
+            run = await message.reply_photo(photo=img, caption=_['stream_1'].format(f'https://t.me/{app.username}?start=info_{videoid}', display_title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
             db[chat_id][0]['mystic'] = run
             db[chat_id][0]['markup'] = 'stream'

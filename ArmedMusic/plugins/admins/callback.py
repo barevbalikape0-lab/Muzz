@@ -228,11 +228,12 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                 return await CallbackQuery.message.reply_text(_["call_6"])
             button = stream_markup(_, chat_id)
             img = await get_thumb(videoid,user_id)
+            display_title = remove_emoji(title)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
-                    title,
+                    display_title,
                     duration,
                     user,
                 ),
@@ -264,11 +265,12 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                 return await mystic.edit_text(_["call_6"])
             button = stream_markup(_, chat_id)
             img = await get_thumb(videoid,user_id)
+            display_title = remove_emoji(title)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
-                    title,
+                    display_title,
                     duration,
                     user,
                 ),
@@ -357,28 +359,32 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                     pass
             elif videoid == "soundcloud":
                 button = stream_markup(_, chat_id)
+                display_title = remove_emoji(title)
+                msg_link = check[0].get('link', f"https://t.me/{app.username}?start=info_{videoid}")
                 run = await CallbackQuery.message.reply_photo(
                     photo=SOUNCLOUD_IMG_URL
                     if str(streamtype) == "audio"
                     else TELEGRAM_VIDEO_URL,
                     caption=_["stream_1"].format(
-                        f"https://t.me/{app.username}?start=info_{videoid}",
-                        title,
+                        msg_link,
+                        display_title,
                         duration,
                         user,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
-                db[chat_id][0]["markup"] = "tg"
+                db[chat_id][0]["markup"] = "sc"
             else:
                 button = stream_markup(_, chat_id)
                 img = await get_thumb(videoid,user_id)
+                display_title = remove_emoji(title)
+                msg_link = check[0].get('link', f"https://t.me/{app.username}?start=info_{videoid}")
                 run = await CallbackQuery.message.reply_photo(
                     photo=img,
                     caption=_["stream_1"].format(
-                        f"https://t.me/{app.username}?start=info_{videoid}",
-                        title,
+                        msg_link,
+                        display_title,
                         duration,
                         user,
                     ),
