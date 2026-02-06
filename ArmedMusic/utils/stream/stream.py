@@ -190,6 +190,8 @@ async def stream(_, mystic, user_id, result, chat_id, user_name, original_chat_i
                 await add_active_video_chat(chat_id)
             # Save file info for download button
             telegram_download_cache[user_id] = {'file_path': file_path, 'file_name': title}
+            # Store link in database for later retrieval
+            db[chat_id][0]['link'] = link
             button = stream_markup_telegram(_, chat_id, user_id)
             try:
                 run = await app.send_photo(chat_id, photo=config.TELEGRAM_VIDEO_URL if video else config.TELEGRAM_AUDIO_URL, caption=_['stream_1'].format(link, title, duration_min, user_name), reply_markup=InlineKeyboardMarkup(button))
