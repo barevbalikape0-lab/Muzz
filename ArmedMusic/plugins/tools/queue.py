@@ -61,7 +61,7 @@ async def get_queue(client, message: Message, _):
         IMAGE = get_image(videoid)
     elif 'index_' in file:
         IMAGE = config.STREAM_IMG_URL
-    elif videoid == 'telegram':
+    elif videoid == 'file_id':
         IMAGE = config.TELEGRAM_AUDIO_URL if typo == 'Audio' else config.TELEGRAM_VIDEO_URL
     elif videoid == 'soundcloud':
         IMAGE = config.SOUNCLOUD_IMG_URL
@@ -172,7 +172,7 @@ async def queue_back(client, CallbackQuery: CallbackQuery, _):
         IMAGE = get_image(videoid)
     elif 'index_' in file:
         IMAGE = config.STREAM_IMG_URL
-    elif videoid == 'telegram':
+    elif videoid == 'file_id':
         IMAGE = config.TELEGRAM_AUDIO_URL if typo == 'Audio' else config.TELEGRAM_VIDEO_URL
     elif videoid == 'soundcloud':
         IMAGE = config.SOUNCLOUD_IMG_URL

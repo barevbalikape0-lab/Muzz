@@ -162,7 +162,7 @@ async def skip(cli, message: Message, _, chat_id):
         except Exception:
             pass
     else:
-        if videoid == 'telegram':
+        if videoid == 'file_id':
             image = None
         elif videoid == 'soundcloud':
             image = None
@@ -175,9 +175,10 @@ async def skip(cli, message: Message, _, chat_id):
             await Anony.skip_stream(chat_id, queued, video=status, image=image)
         except:
             return await message.reply_text(_['call_6'])
-        if videoid == 'telegram':
+        if videoid == 'file_id':
             button = stream_markup(_, chat_id)
-            run = await message.reply_photo(photo=config.TELEGRAM_AUDIO_URL if str(streamtype) == 'audio' else config.TELEGRAM_VIDEO_URL, caption=_['stream_1'].format(config.SUPPORT_CHAT, title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
+            msg_link = check[0].get('link', f'https://t.me/{app.username}')
+            run = await message.reply_photo(photo=config.TELEGRAM_AUDIO_URL if str(streamtype) == 'audio' else config.TELEGRAM_VIDEO_URL, caption=_['stream_1'].format(msg_link, title, check[0]['dur'], user), reply_markup=InlineKeyboardMarkup(button))
             db[chat_id][0]['mystic'] = run
             db[chat_id][0]['markup'] = 'tg'
         elif videoid == 'soundcloud':

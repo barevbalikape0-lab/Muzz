@@ -319,7 +319,7 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                 pass
             await CallbackQuery.edit_message_text(txt, reply_markup=close_markup(_))
         else:
-            if videoid == "telegram":
+            if videoid == "file_id":
                 image = None
             elif videoid == "soundcloud":
                 image = None
@@ -332,14 +332,15 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                 await Anony.skip_stream(chat_id, queued, video=status, image=image)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
-            if videoid == "telegram":
+            if videoid == "file_id":
                 button = stream_markup(_, chat_id)
+                msg_link = check[0].get('link', f'https://t.me/{app.username}')
                 run = await CallbackQuery.message.reply_photo(
                     photo=TELEGRAM_AUDIO_URL
                     if str(streamtype) == "audio"
                     else TELEGRAM_VIDEO_URL,
                     caption=_["stream_1"].format(
-                        f"https://t.me/{app.username}?start=info_{videoid}",
+                        msg_link,
                         title,
                         duration,
                         user,
@@ -350,7 +351,7 @@ async def del_back_playlist(client, CallbackQuery:CallbackQuery, _):
                 db[chat_id][0]["markup"] = "tg"
                 try:
                     from ArmedMusic.utils.stream.stream import _add_requester_message_link
-                    await _add_requester_message_link(run, chat_id, _["stream_1"], f"https://t.me/{app.username}?start=info_{videoid}", title, duration, user, InlineKeyboardMarkup(button))
+                    await _add_requester_message_link(run, chat_id, _["stream_1"], msg_link, title, duration, user, InlineKeyboardMarkup(button))
                 except Exception:
                     pass
             elif videoid == "soundcloud":
