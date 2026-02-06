@@ -32,7 +32,7 @@ from ArmedMusic.utils.database import (
     set_loop,
 )
 from ArmedMusic.utils.exceptions import AssistantErr
-from ArmedMusic.utils.formatters import check_duration, seconds_to_min, speed_converter
+from ArmedMusic.utils.formatters import check_duration, seconds_to_min, speed_converter, remove_emoji
 from ArmedMusic.utils.inline.play import stream_markup
 from ArmedMusic.utils.thumbnails import get_thumb
 from strings import get_string
@@ -398,13 +398,14 @@ class Call(PyTgCalls):
                 img = await get_thumb(videoid,user_id)
                 button = stream_markup(_, chat_id)
                 # For Telegram files, use stored link; for YouTube, use info link
+                display_title = remove_emoji(title)
                 msg_link = check[0].get('link', f"https://t.me/{app.username}?start=info_{videoid}")
                 run = await app.send_photo(
                     chat_id=original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
                         msg_link,
-                        title,
+                        display_title,
                         check[0]["dur"],
                         user,
                     ),
@@ -454,13 +455,14 @@ class Call(PyTgCalls):
                 button = stream_markup(_, chat_id)
                 await mystic.delete()
                 # For Telegram files, use stored link; for YouTube, use info link
+                display_title = remove_emoji(title)
                 msg_link = check[0].get('link', f"https://t.me/{app.username}?start=info_{videoid}")
                 run = await app.send_photo(
                     chat_id=original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
                         msg_link,
-                        title,
+                        display_title,
                         check[0]["dur"],
                         user,
                     ),
@@ -522,13 +524,14 @@ class Call(PyTgCalls):
                 if videoid == "file_id":
                     button = stream_markup(_, chat_id)
                     # Use original message link from database (guaranteed for Telegram files)
+                    display_title = remove_emoji(title)
                     msg_link = check[0].get('link') or f"https://t.me/{app.username}"
                     run = await app.send_photo(
                         chat_id=original_chat_id,
                         photo=config.TELEGRAM_AUDIO_URL if str(streamtype) == "audio" else config.TELEGRAM_VIDEO_URL,
                         caption=_["stream_1"].format(
                             msg_link,
-                            title,
+                            display_title,
                             check[0]["dur"],
                             user,
                         ),
@@ -544,13 +547,14 @@ class Call(PyTgCalls):
                 elif videoid == "soundcloud":
                     button = stream_markup(_, chat_id)
                     # Use stored link if available, otherwise use info link
+                    display_title = remove_emoji(title)
                     msg_link = check[0].get('link', f"https://t.me/{app.username}?start=info_{videoid}")
                     run = await app.send_photo(
                         chat_id=original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
                         caption=_["stream_1"].format(
                             msg_link,
-                            title,
+                            display_title,
                             check[0]["dur"],
                             user,
                         ),
@@ -562,13 +566,14 @@ class Call(PyTgCalls):
                     img = await get_thumb(videoid,user_id)
                     button = stream_markup(_, chat_id)
                     # Use stored link if available, otherwise use info link
+                    display_title = remove_emoji(title)
                     msg_link = check[0].get('link', f"https://t.me/{app.username}?start=info_{videoid}")
                     run = await app.send_photo(
                         chat_id=original_chat_id,
                         photo=img,
                         caption=_["stream_1"].format(
                             msg_link,
-                            title,
+                            display_title,
                             check[0]["dur"],
                             user,
                         ),
